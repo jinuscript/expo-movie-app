@@ -1,6 +1,7 @@
+import SearchBar from "@/components/Searchbar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 
 const HomeScreen = () => {
   return (
@@ -18,11 +19,13 @@ const HomeScreen = () => {
       >
         {/* 아이콘 */}
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+
+        <View className="flex-1 mt-5">
+          <SearchBar />
+        </View>
       </ScrollView>
     </View>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});
