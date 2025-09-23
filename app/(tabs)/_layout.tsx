@@ -1,17 +1,27 @@
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { Tabs } from "expo-router";
-import { Image, ImageBackground, Text } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 
-const TabIcons = () => {
+const TabIcons = ({ focused, icon, title }) => {
+  if (focused) {
+    return (
+      <ImageBackground
+        source={images.highlight}
+        className="flex flex-row w-full items-center justify-center min-w-[112px] min-h-14 mt-4 rounded-full overflow-hidden"
+      >
+        <Image source={icon} tintColor="#151312" className="size-5" />
+        <Text className="text-secondary text-base font-semibold ml-2">
+          {title}
+        </Text>
+      </ImageBackground>
+    );
+  }
+
   return (
-    <ImageBackground
-      source={images.highlight}
-      className="flex flex-row w-full items-center justify-center min-w-[112px] min-h-14 mt-4 rounded-full overflow-hidden"
-    >
-      <Image source={icons.home} tintColor="#151312" className="size-5" />
-      <Text className="text-secondary text-base font-semibold ml-2">Home</Text>
-    </ImageBackground>
+    <View className="size-full justify-center items-center mt-4 rounded-full">
+      <Image source={icon} tintColor="#a8b5db" className="size-5" />
+    </View>
   );
 };
 
@@ -23,15 +33,9 @@ export default function TabsLayout() {
         options={{
           title: "홈",
           headerShown: true,
-          tabBarIcon: ({ focused }) => <TabIcons />,
-        }}
-      />
-      <Tabs.Screen
-        name="saved"
-        options={{
-          title: "저장",
-          headerShown: true,
-          tabBarIcon: ({ focused }) => <TabIcons />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcons focused={focused} icon={icons.home} title="Home" />
+          ),
         }}
       />
       <Tabs.Screen
@@ -39,7 +43,19 @@ export default function TabsLayout() {
         options={{
           title: "검색",
           headerShown: true,
-          tabBarIcon: ({ focused }) => <TabIcons />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcons focused={focused} icon={icons.search} title="Search" />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="saved"
+        options={{
+          title: "저장",
+          headerShown: true,
+          tabBarIcon: ({ focused }) => (
+            <TabIcons focused={focused} icon={icons.save} title="Saved" />
+          ),
         }}
       />
       <Tabs.Screen
@@ -47,7 +63,9 @@ export default function TabsLayout() {
         options={{
           title: "프로필",
           headerShown: true,
-          tabBarIcon: ({ focused }) => <TabIcons />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcons focused={focused} icon={icons.person} title="Profile" />
+          ),
         }}
       />
     </Tabs>
