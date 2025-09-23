@@ -53,7 +53,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: "홈",
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcons focused={focused} icon={icons.home} title="Home" />
           ),
@@ -63,7 +63,7 @@ export default function TabsLayout() {
         name="search"
         options={{
           title: "검색",
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcons focused={focused} icon={icons.search} title="Search" />
           ),
@@ -73,7 +73,7 @@ export default function TabsLayout() {
         name="saved"
         options={{
           title: "저장",
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcons focused={focused} icon={icons.save} title="Saved" />
           ),
@@ -83,7 +83,7 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: "프로필",
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcons focused={focused} icon={icons.person} title="Profile" />
           ),
