@@ -4,16 +4,31 @@ import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import fetchMovies from "@/services/api";
 import useFetch from "@/services/useFetch";
-import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
 const SearchScreen = () => {
-  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetch(() => fetchMovies({ query: "" }));
+    refetch: loadMovies,
+    reset,
+  } = useFetch(() => fetchMovies({ query: searchQuery }), false);
+
+  useEffect(() => {
+    const func = async () => {
+      if (searchQuery.trim()) {
+        await loadMovies();
+      } else {
+        reset();
+      }
+    };
+
+    func();
+  }, [searchQuery]);
 
   return (
     <View className="flex-1 bg-primary">
@@ -41,7 +56,11 @@ const SearchScreen = () => {
             </View>
 
             <View className="my-5">
-              <SearchBar placeholder="Search movies..." />
+              <SearchBar
+                placeholder="Search movies..."
+                value={searchQuery}
+                onChangeText={(text: string) => setSearchQuery(text)}
+              />
             </View>
 
             {moviesLoading && (
@@ -60,11 +79,11 @@ const SearchScreen = () => {
 
             {!moviesLoading &&
               !moviesError &&
-              "SEARCH TERM".trim() &&
+              searchQuery.trim() &&
               movies?.length > 0 && (
                 <Text className="text-xl text-white font-bold">
                   Search Result for{" "}
-                  <Text className="text-accent">SEARCH TERM</Text>
+                  <Text className="text-accent">{searchQuery}</Text>
                 </Text>
               )}
           </>
