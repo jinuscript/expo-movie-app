@@ -62,7 +62,7 @@ const HomeScreen = () => {
 
               <FlatList
                 data={movies}
-                renderItem={({ item }) => <MovieCard />}
+                renderItem={({ item }) => <MovieCard {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
                 columnWrapperStyle={{
