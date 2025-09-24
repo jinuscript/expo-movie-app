@@ -1,4 +1,4 @@
-export const TMDB_CONFIG = {
+const TMDB_CONFIG = {
   BASE_URL: `https://api.themoviedb.org/3`,
   API_KEY: process.env.EXPO_PUBLIC_MOVIE_API_KEY,
   headers: {
@@ -7,7 +7,7 @@ export const TMDB_CONFIG = {
   },
 };
 
-export const fetchMovies = async ({ query }: { query: string }) => {
+const fetchMovies = async ({ query }: { query: string }) => {
   // 쿼리 O -> 검색 결과
   // 쿼리 X -> 인기순
   const endpoint = query
@@ -28,3 +28,5 @@ export const fetchMovies = async ({ query }: { query: string }) => {
 
   return data.results;
 };
+
+export default fetchMovies;
