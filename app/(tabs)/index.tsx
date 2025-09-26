@@ -22,6 +22,25 @@ const HomeScreen = () => {
     error: moviesError,
   } = useFetch(() => fetchMovies({ query: "" }));
 
+  // useEffect(() => {
+  // const checkDatabaseConnection = async () => {
+  //   try {
+  //     const response = await databases.listDocuments({
+  //       databaseId: `${process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID}`,
+  //       collectionId: `${process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID}`,
+  //     });
+  //     console.log("데이터베이스 연결 성공:", response);
+  //     //
+  //     return true;
+  //   } catch (error) {
+  //     console.log("데이터베이스 연결 실패:", error);
+  //     //
+  //     return false;
+  //   }
+  // };
+  // checkDatabaseConnection();
+  // }, []);
+
   return (
     <View className="flex-1 bg-primary">
       {/* 배경 */}
