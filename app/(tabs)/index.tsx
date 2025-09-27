@@ -3,7 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import TrendingCard from "@/components/TrendingCard";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
-import fetchMovies from "@/services/api";
+import { fetchMovies } from "@/services/api";
 import { getTrendingMovies } from "@/services/appwrite";
 import useFetch from "@/services/useFetch";
 import { useRouter } from "expo-router";
